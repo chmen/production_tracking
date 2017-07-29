@@ -1,0 +1,23 @@
+<%= form_for :game do |f| %>
+  
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :packageName %><br>
+    <%= f.text_field :packageName %>
+  </div>
+  <div class="field">
+    <%= f.label :Store %><br>
+    <%= f.text_field :Store %>
+  </div>
+  <div class="field">
+    <%= f.label :live %><br>
+    <%= f.check_box :live %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Add', class: 'btn btn-primary' %>
+  </div>
+<% end %>

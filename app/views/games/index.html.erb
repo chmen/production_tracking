@@ -1,0 +1,98 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Production Tracking</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Graphic designer</th>
+      <th>Illustrator</th>
+      <th>Writer</th>
+      <th>Composer</th>
+      <th>Developer</th>
+      <th>Live</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each do |game| %>
+      <tr class="active">
+        <td><%= game.name %></td>
+        
+        <% Employee.roles.each do |role, enum| %>
+          <td> <%= game.employee_name(game.id, enum) %>
+          <button type="button" 
+          class="btn btn-primary add-assigment" 
+          data-game-id="<%= game.id %>"
+          data-game-name="<%= game.name %>" 
+          data-role="<%= role %>"
+          data-toggle="modal" data-target="#editAssignment"
+          >+</button>
+          </td>
+        <% end %>
+
+        <td><%= game.live %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addGame">Add Game</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEmployee">Add Employee</button>
+
+
+<div id="addGame" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Game</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'form' %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="addEmployee" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Employee</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'employees/form' %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="editAssignment" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Assign</h4>
+      </div>
+      <div class="modal-body">
+         <%= render 'assignments/form' %>
+      </div>
+    </div>
+
+  </div>
+</div>

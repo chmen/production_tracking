@@ -1,0 +1,19 @@
+<%= form_for Assignment.new do |f| %>
+
+  <div class="field">
+    <%= f.label :game_id %><br>
+    <p id="game-name"></p>
+    <%= f.hidden_field :game_id %>
+  </div>
+  <div class="field">
+    <%= f.label :employee_id %><br>
+    <%= f.collection_select(:employee_id, Employee.all, :id, :name)  %>
+  </div>
+  <div class="field">
+    <%= f.label :role %><br>
+    <%= f.text_field :role, readonly: true %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Assign', class: 'btn btn-primary'%>
+  </div>
+<% end %>
